@@ -1,0 +1,27 @@
+apply plugin : 'java'          
+apply plugin : 'maven'         
+apply plugin : 'application'   
+                               
+repositories {                 
+    mavenCentral()             
+}                              
+                               
+dependencies {                 
+    compile (                  
+    'log4j:log4j:1.2.17'       
+    )                          
+    testCompile (              
+    'junit:junit:4.+'          
+    )                          
+}                              
+                               
+jar {                          
+    baseName = 'kkkmmu'        
+    version = '0.1.0'          
+}                              
+                               
+task wrapper(type: Wrapper) {  
+    gradleVersion = '3.0'      
+}                              
+                               
+mainClassName = 'server.ServerMain' 
