@@ -2,6 +2,7 @@ package retrivepages;
 
 import java.io.*;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.HttpClient;
@@ -13,6 +14,10 @@ public class RetrivePages {
     private static HttpClient client = new HttpClient();
     private static Logger logger = Logger.getLogger(RetrivePages.class);
 
+    static {
+        PropertyConfigurator.configure("log4j.properties");
+    }
+
     public RetrivePages(String page) {
         this.page = page;
     }
@@ -23,7 +28,7 @@ public class RetrivePages {
 
         GetMethod getMethod = new GetMethod(page);
         int statusCode = client.executeMethod(getMethod);
-        logger.debug("Downloading " + page + " with status code " + statusCode + "!");
+        logger.warn("Downloading " + page + " with status code " + statusCode + "!");
         if (statusCode == HttpStatus.SC_OK) {
 
             input = getMethod.getResponseBodyAsStream();
