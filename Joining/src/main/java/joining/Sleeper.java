@@ -1,6 +1,6 @@
 package joining;
 
-public class Sleeper extends Thread {
+class Sleeper extends Thread {
     private int duration;
     public Sleeper(String name, int sleepTime) {
         super(name);
