@@ -1,4 +1,4 @@
-package widthFirstspider;
+package widthfirstspider;
 
 import java.util.*;
 import org.htmlparser.Node;
@@ -28,19 +28,19 @@ public class HtmlParserTool {
                 }
             };
 
-            OrFilter linkFilter = new OrFilter(new NodeCloassFilter(LinkTag.class), frameFilter);
+            OrFilter linkFilter = new OrFilter(new NodeClassFilter(LinkTag.class), frameFilter);
             NodeList list = parser.extractAllNodesThatMatch(linkFilter);
 
             for (int i = 0; i < list.size(); i++) {
                 Node tag = list.elementAt(i);
-                if (tage instanceof LinkTag) {
+                if (tag instanceof LinkTag) {
                     LinkTag link = (LinkTag) tag;
                     String linkUrl = link.getLink();
                     if (filter.accept(linkUrl))
                         links.add(linkUrl);
                 } else {
                     String frame = tag.getText();
-                    int start = frame.indexof("src=");
+                    int start = frame.indexOf("src=");
                     frame = frame.substring(start);
                     int end = frame.indexOf(" ");
                     if (end == -1) {
@@ -54,7 +54,7 @@ public class HtmlParserTool {
                 }
             }
         } catch (ParserException ex) {
-            e.printStackTrace();
+            ex.printStackTrace();
         }
 
         return links;

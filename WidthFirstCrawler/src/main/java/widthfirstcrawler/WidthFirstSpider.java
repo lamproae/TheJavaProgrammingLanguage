@@ -1,7 +1,6 @@
 package widthfirstspider;
 
-import org.htmlparser.filters.LinkFilter;
-import org.htmlparser.HtmlParserTool;
+import java.util.*;
 
 public class WidthFirstSpider {
     private void initCrawlerWithSeeds(String[] seeds) {
@@ -13,7 +12,7 @@ public class WidthFirstSpider {
     public void crawling(String[] seeds) {
         LinkFilter filter = new LinkFilter() {
             public boolean accept(String url) {
-                if (url.startWith("http://www.163.com"))
+                if (url.startsWith("http://www.163.com"))
                     return true;
                 else
                     return false;
@@ -30,7 +29,7 @@ public class WidthFirstSpider {
             DownloadFile downLoader = new DownloadFile();
             LinkQueue.addVisitedUrl(visitUrl);
 
-            Set<string> links = HtmlParserTool.extracLinks(visitUrl, filter);
+            Set<String> links = HtmlParserTool.extracLinks(visitUrl, filter);
 
             for (String link : links) {
                 LinkQueue.addUnvisitedUrl(link);
