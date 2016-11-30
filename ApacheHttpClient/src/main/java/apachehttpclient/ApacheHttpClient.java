@@ -1,4 +1,4 @@
-package widthfirstspider;
+package apachehttpclient;
 
 import java.io.*;
 import org.apache.log4j.Logger;
@@ -11,22 +11,11 @@ import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
 
-public class DownloadFile {
-    private static Logger logger = Logger.getLogger(DownloadFile.class);
+public class ApacheHttpClient {
+    private static Logger logger = Logger.getLogger(ApacheHttpClient.class);
 
     static {
         PropertyConfigurator.configure("log4j.properties");
-    }
-
-    public String getFileNameByUrl(String url, String contentType) {
-        url = url.substring(7);
-        if (contentType.indexOf("html") != -1) {
-            url = url.replaceAll("[\\?/:*|<>\"]", "_") + ".html";
-            return url;
-        } else {
-            return url.replaceAll("[\\?/:*|<>\"]", "_") + "*." + 
-                contentType.substring(contentType.lastIndexOf("/") + 1);
-        }
     }
 
     private void saveToLocal(byte[] data, String filePath) {
@@ -41,6 +30,18 @@ public class DownloadFile {
             ex.printStackTrace();
         }
     }
+
+    public String getFileNameByUrl(String url, String contentType) {
+        url = url.substring(7);
+        if (contentType.indexOf("html") != -1) {
+            url = url.replaceAll("[\\?/:*|<>\"]", "_") + ".html";
+            return url;
+        } else {
+            return url.replaceAll("[\\?/:*|<>\"]", "_") + "*." + 
+                contentType.substring(contentType.lastIndexOf("/") + 1);
+        }
+    }
+
 
     public String downloadFile(String url) {
         String filePath = null;
@@ -74,4 +75,3 @@ public class DownloadFile {
         return filePath;
     }
 }
-

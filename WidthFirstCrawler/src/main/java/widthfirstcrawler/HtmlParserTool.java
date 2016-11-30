@@ -1,6 +1,8 @@
 package widthfirstspider;
 
 import java.util.*;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.htmlparser.Node;
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
@@ -11,6 +13,12 @@ import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 
 public class HtmlParserTool {
+    private static Logger logger = Logger.getLogger(WidthFirstSpider.class);
+
+   static {
+        PropertyConfigurator.configure("log4j.properties");
+    }
+
     public static Set<String> extracLinks(String url, LinkFilter filter) {
         Set<String> links = new HashSet<String>();
 

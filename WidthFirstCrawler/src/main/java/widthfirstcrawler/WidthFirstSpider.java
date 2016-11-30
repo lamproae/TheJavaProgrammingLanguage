@@ -1,8 +1,16 @@
 package widthfirstspider;
 
 import java.util.*;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class WidthFirstSpider {
+    private static Logger logger = Logger.getLogger(WidthFirstSpider.class);
+
+    static {
+        PropertyConfigurator.configure("log4j.properties");
+    }
+
     private void initCrawlerWithSeeds(String[] seeds) {
         for (int i = 0; i < seeds.length; i++) {
             LinkQueue.addUnvisitedUrl(seeds[i]);
@@ -19,6 +27,7 @@ public class WidthFirstSpider {
             }
         };
 
+        logger.warn(seeds);
         initCrawlerWithSeeds(seeds);
         
         while(!LinkQueue.unVisitedUrlsEmpty() && LinkQueue.getVisitedUrlNum() <= 1000) {
