@@ -16,6 +16,8 @@ public class SimpleJsoupMain {
         // final String selector = args.length == 2 ? args[1] : null;
         // final String selector = ".slider-main";
         final String selector = "#layout-news";
+        // final String selector = "body";
+        // final String selector = "#m-img";
 
         // fetch the specified URL and parse to a HTML DOM
         Document doc = Jsoup.connect("http://www.163.com").userAgent(userAgent).timeout(timeout).get();

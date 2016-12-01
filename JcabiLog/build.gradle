@@ -1,0 +1,30 @@
+apply plugin : 'java'          
+apply plugin : 'maven'         
+apply plugin : 'application'   
+                               
+repositories {                 
+    mavenCentral()             
+}                              
+                               
+dependencies {                 
+    compile (                  
+    'log4j:log4j:1.2.17',       
+    'org.slf4j:slf4j-api:1.7.21',
+    'org.slf4j:slf4j-log4j12:1.7.5',
+    'com.jcabi:jcabi-log:0.17.2'
+    )                          
+    testCompile (              
+    'junit:junit:4.+'          
+    )                          
+}                              
+                               
+jar {                          
+    baseName = 'kkkmmu'        
+    version = '0.1.0'          
+}                              
+                               
+task wrapper(type: Wrapper) {  
+    gradleVersion = '3.0'      
+}                              
+                               
+mainClassName = 'jcabilog.JcabiLogMain' 
